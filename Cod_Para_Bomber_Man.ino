@@ -17,6 +17,8 @@
 
 #include <SPI.h>
 #include <MFRC522.h>
+#include <Keyboard.h>
+
 
 #define SS_PIN 10
 #define RST_PIN 9
@@ -46,6 +48,8 @@ void printKeys(); // Imprimir no serial estado dos vetores
 
 void update_leds();
 
+void applayKeys(int idx);
+
 void setup() {
   Serial.begin(9600);
   SPI.begin();
@@ -56,6 +60,9 @@ void setup() {
   //Definidno leds
   pinMode(LEN_KEY_0, OUTPUT);
   pinMode(LEN_KEY_1, OUTPUT);
+
+  //Inicializando teclado
+  Keyboard.begin();
 
 }
 
@@ -98,7 +105,9 @@ void loop() {
 
 }
 
-
+void applayKeys(int idx){
+  if(Keys_used[idx]!=NULL) Keyboard.write(idx+'0');
+}
 
 
 
@@ -108,6 +117,7 @@ void moveKey(const char* key) {
     if (Keys_not_used[i] != NULL && strcmp(Keys_not_used[i], key) == 0) {
       Keys_used[i] = Keys_not_used[i]; // mesma posição
       Keys_not_used[i] = NULL;
+      applayKeys(i);
       break;
     }
   }
