@@ -34,9 +34,9 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);
 #define BUTTON_PIN 7
 
 // Vetores contendo strings (char*)
-#define LEN_KEY 2
-const char* Keys_original[LEN_KEY] = {"B5F821", "72EF80"};
-char* Keys_not_used[LEN_KEY] = {"B5F821", "72EF80"};
+#define LEN_KEY 3
+const char* Keys_original[LEN_KEY] = {"B5F821", "99FC77A","BDF6CECE"};
+char* Keys_not_used[LEN_KEY] = {"B5F821", "99FC77A","BDF6CECE"};
 char* Keys_used[LEN_KEY]     = {NULL, NULL};
 
 
@@ -60,6 +60,7 @@ void setup() {
   //Definidno leds
   pinMode(LEN_KEY_0, OUTPUT);
   pinMode(LEN_KEY_1, OUTPUT);
+  pinMode(LEN_KEY_2, OUTPUT);
 
   //Inicializando teclado
   Keyboard.begin();
@@ -106,7 +107,7 @@ void loop() {
 }
 
 void applayKeys(int idx){
-  if(Keys_used[idx]!=NULL) Keyboard.write(idx+'0');
+  if(Keys_used[idx]!=NULL) Keyboard.write(idx+'1');
 }
 
 
