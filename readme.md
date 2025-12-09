@@ -1,4 +1,4 @@
-# Arduino RFID Controller para *Bomber Rush*
+# BombStation
 
 Este projeto contém um código para o **Arduino Leonardo** que utiliza um sensor **RFID RC522** para ler cartões e ativar eventos dentro do jogo **Bomber Rush**.
 
